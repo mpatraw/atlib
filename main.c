@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdint.h>
 
+#include "at/noise.h"
 #include "at/random.h"
 
 #define mu_assert(message, test)                                        \
@@ -33,17 +34,19 @@ static const char *test_rng(void)
         double b[] = {0.0, 5.0, 5.0, 10.0};
         double t[6];
         int i;
-        unsigned j;
+        double j;
         struct at_xorshift x;
+        struct at_simplex sim;
         at_xorshift_seed(&x, time(NULL));
+        at_simplex_seed(&sim, next, &x);
 
         /*mu_assert("error, next_integer(1, 1) != 1",
                 at_next_integer(r, 1, 1) == 1);*/
 
-        for (i = 0; i < 10; ++i)
+        for (i = 0; i < 100; ++i)
         {
-                j = at_next_piecewise_linear(next, &x, w, b, t, 4);
-                printf("%u\n", j);
+                j = at_simplex_2d(&sim, (i + 1) * 0.01, 0);
+                printf("%f\n", j);
         }
 
         return NULL;
