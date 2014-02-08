@@ -68,7 +68,7 @@ double at_turbulence_4d(
         unsigned i;
 
         unsigned octs = turb ? turb->octants : 6;
-        double lucan = turb ? turb->lucanarity : 2.0;
+        double lucan = turb ? turb->lacunarity : 2.0;
         double gain = turb ? turb->gain : 0.5;
         double amp = turb ? turb->amplitude : 1.0;
         double freq = turb ? turb->frequency : 1.0;

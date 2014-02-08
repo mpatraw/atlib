@@ -10,7 +10,7 @@
 struct at_turbulence
 {
         unsigned octants;
-        double lucanarity;
+        double lacunarity;
         double gain;
         double amplitude;
         double frequency;
