@@ -14,7 +14,7 @@
         + simplex 2d, 3d, and 4d
         - wavelet 2d, 3d, and 4d
         + turbulence
-        - fractal brownian noise
+        + fractal brownian noise
 
 - fov functions
         - basic
