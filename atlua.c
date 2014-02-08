@@ -5,21 +5,32 @@
 #include <lua.h>
 #include <lualib.h>
 
-static int print(lua_State *L)
+#include "at/random.h"
+
+static struct at_xorshift x;
+
+static int seed(lua_State *L)
 {
-    printf("Hello, world\n");
-    return 0;
+        at_xorshift_seed(&x, (uint32_t)luaL_checkinteger(L, 1));
+        return 0;
+}
+
+static int rand(lua_State *L)
+{
+        lua_pushnumber(L, (lua_Number)at_xorshift_next(&x));
+        return 1;
 }
 
 static const luaL_Reg atlib[] =
 {
-    {"print", print},
-    {NULL, NULL},
+        {"seed", seed},
+        {"rand", rand},
+        {NULL, NULL},
 };
 
 LUALIB_API int luaopen_at(lua_State *L)
 {
-    lua_newtable(L);
-    luaL_register(L, NULL, atlib);
-    return 1;
+        lua_newtable(L);
+        luaL_register(L, NULL, atlib);
+        return 1;
 }

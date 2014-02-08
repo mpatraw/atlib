@@ -14,7 +14,7 @@
 
 
 
-unsigned at_next_discrete(at_next_func *f, void *v, double *w, unsigned l)
+unsigned at_next_discrete(uint32_t (*f)(void *), void *v, double *w, unsigned l)
 {
         unsigned i = 0;
         double sum = 0.0;
@@ -38,7 +38,7 @@ unsigned at_next_discrete(at_next_func *f, void *v, double *w, unsigned l)
 
 
 double at_next_piecewise_constant(
-        at_next_func *f, void *v, double *w, double *b, double l)
+        uint32_t (*f)(void *), void *v, double *w, double *b, double l)
 {
         unsigned i = at_next_discrete(f, v, w, l);
         return f(v) * _01 * (b[i + 1] - b[i]) + b[i];
@@ -47,7 +47,8 @@ double at_next_piecewise_constant(
 
 
 double at_next_piecewise_linear(
-        at_next_func *f, void *v, double *w, double *b, double *t, double l)
+        uint32_t (*f)(void *), void *v,
+        double *w, double *b, double *t, double l)
 {
         double width;
         double w1;

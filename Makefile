@@ -5,7 +5,7 @@ LDFLAGS = -g -lmingw32 -lm -L./lua -llua51
 SOURCES = atlua.c $(wildcard at/*.c) $(wildcard at/*/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 LTARGET = at.dll
-TARGET = libat.a
+TARGET = libat.so
 EXE = at.exe
 
 all: $(SOURCES) $(LTARGET) $(TARGET) $(EXE)
