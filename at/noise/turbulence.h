@@ -2,8 +2,8 @@
 /**
  * turbulence for noise functions
  */
-#ifndef AT_SAMPLING_H
-#define AT_SAMPLING_H
+#ifndef AT_TURBULENCE_H
+#define AT_TURBULENCE_H
 
 #include <stdint.h>
 
