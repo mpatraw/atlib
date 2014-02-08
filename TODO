@@ -13,7 +13,7 @@
         - perlin 2d, 3d, and 4d
         + simplex 2d, 3d, and 4d
         - wavelet 2d, 3d, and 4d
-        - turbulence
+        + turbulence
         - fractal brownian noise
 
 - fov functions
