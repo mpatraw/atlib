@@ -9,10 +9,10 @@
         + poisson distributions
         + sampling distributions
 
-- noise functions
-        - perlin 1d, 2d, 3d, and 4d
-        - simplex 1d, 2d, 3d, and 4d
-        - wavelet 1d, 2d, 3d, and 4d
+= noise functions
+        - perlin 2d, 3d, and 4d
+        + simplex 2d, 3d, and 4d
+        - wavelet 2d, 3d, and 4d
         - turbulence
         - fractal brownian noise
 

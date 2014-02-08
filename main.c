@@ -35,18 +35,17 @@ static const char *test_rng(void)
         double t[6];
         int i;
         double j;
-        struct at_xorshift x;
+        struct at_bjenkins bob;
         struct at_simplex sim;
-        at_xorshift_seed(&x, time(NULL));
-        at_simplex_seed(&sim, next, &x);
+        at_bjenkins_seed(&bob, time(NULL));
+        at_simplex_seed(&sim, next, &bob);
 
         /*mu_assert("error, next_integer(1, 1) != 1",
                 at_next_integer(r, 1, 1) == 1);*/
 
-        for (i = 0; i < 100; ++i)
+        for (i = 0; i < 50000000; ++i)
         {
-                j = at_simplex_2d(&sim, (i + 1) * 0.01, 0);
-                printf("%f\n", j);
+                j = at_bjenkins_next(&bob);
         }
 
         return NULL;
