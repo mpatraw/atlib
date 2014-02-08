@@ -1,4 +1,4 @@
 atlib
 =====
 
-roguelike utility library in c/lua
+roguelike utility library in c
