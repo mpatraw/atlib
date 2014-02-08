@@ -1,0 +1,34 @@
+
++ random functions
+        + xorshift generator
+        + bjenkins generator
+        + cmwc generator
+        + mersenne twister generator
+        + bernoulli distributions
+        + normal distributions
+        + poisson distributions
+        + sampling distributions
+
+- noise functions
+        - perlin 1d, 2d, 3d, and 4d
+        - simplex 1d, 2d, 3d, and 4d
+        - wavelet 1d, 2d, 3d, and 4d
+        - turbulence
+        - fractal brownian noise
+
+- fov functions
+        - basic
+        - diamond
+        - shadow
+        - permissive 0, 1, 2, 3, 4, 5, 6, 7, and 8
+        - restrictive
+
+- pathfinding functions
+        - a*
+        - dijkstra
+
+- container functions
+
+- heightmap functions
+
+- dungeon building functions

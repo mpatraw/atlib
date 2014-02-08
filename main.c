@@ -30,7 +30,7 @@ static uint32_t next(void *r)
 static const char *test_rng(void)
 {
         double w[] = {0.0, 1.0, 1.0, 0.0};
-        double b[] = {0.0, 5.0, 10.0, 15.0};
+        double b[] = {0.0, 5.0, 5.0, 10.0};
         double t[6];
         int i;
         unsigned j;
