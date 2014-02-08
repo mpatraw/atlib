@@ -21,4 +21,4 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(CFLAGS) $(LDFLAGS) $< -o $@
 
 clean:
-	-@rm at.dll *.o at/*.o at/*/*.o
+	-@rm $(TARGET) $(EXE) $(OBJECTS)
