@@ -1,9 +1,16 @@
 
+- unimplemented
+= partially implemented
++ implemented but untested
+* tested
+
+
 + random functions
-        + xorshift generator
-        + bjenkins generator
-        + cmwc generator
-        + mersenne twister generator
+        * xorshift generator
+        * bjenkins generator
+        * cmwc generator
+        * mersenne twister generator
+        * uniform distributions
         + bernoulli distributions
         + normal distributions
         + poisson distributions
