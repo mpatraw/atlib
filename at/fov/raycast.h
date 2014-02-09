@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-void at_raycast(int *view, int *grid, unsigned w, unsigned h,
-        int cx, int cy, int r);
+void at_raycast(int *view, int *grid, unsigned w, unsigned h, double r,
+        int cx, int cy);
 
 #ifdef __cplusplus
 }
