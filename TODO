@@ -23,7 +23,8 @@
         + turbulence
         + fractal brownian noise
 
-- fov functions
+= fov functions
+        + raycast
         - basic
         - diamond
         - shadow
