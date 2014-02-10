@@ -5,8 +5,8 @@
 
 
 
-double at_get_next_gamma(
-        uint32_t (*f)(void *), void *v, double alpha, double beta);
+extern double at_get_next_gamma(
+        double alpha, double beta, uint32_t (*f)(void *), void *v);
 
 
 
@@ -15,7 +15,7 @@ double at_get_next_gamma(
 
 
 double at_get_next_normal(
-        uint32_t (*f)(void *), void *v, double mean, double dev)
+        double mean, double dev, uint32_t (*f)(void *), void *v)
 {
         const double pi = 3.14159265358979323846;
         double r1 = f(v) * _01;
@@ -29,22 +29,22 @@ double at_get_next_normal(
 
 
 double at_get_next_lognormal(
-        uint32_t (*f)(void *), void *v, double mean, double dev)
+        double mean, double dev, uint32_t (*f)(void *), void *v)
 {
-        return exp(at_get_next_normal(f, v, mean, dev));
+        return exp(at_get_next_normal(mean, dev, f, v));
 }
 
 
 
-double at_get_next_chi_squared(uint32_t (*f)(void *), void *v, double n)
+double at_get_next_chi_squared(double n, uint32_t (*f)(void *), void *v)
 {
-        return at_get_next_gamma(f, v, n / 2.0, 1.0) * 2;
+        return at_get_next_gamma(n / 2.0, 1.0, f, v) * 2;
 }
 
 
 
 double at_get_next_cauchy(
-        uint32_t (*f)(void *), void *v, double median, double dev)
+        double median, double dev, uint32_t (*f)(void *), void *v)
 {
         const double pi = 3.14159265358979323846;
         double val = f(v) * _01 - 0.5;
@@ -54,18 +54,18 @@ double at_get_next_cauchy(
 
 
 double at_get_next_fischer_f(
-        uint32_t (*f)(void *), void *v, double m, double n)
+        double m, double n, uint32_t (*f)(void *), void *v)
 {
         return
-                (at_get_next_chi_squared(f, v, m) * n) /
-                (at_get_next_chi_squared(f, v, n) * m);
+                (at_get_next_chi_squared(m, f, v) * n) /
+                (at_get_next_chi_squared(n, f, v) * m);
 }
 
 
 
-double at_get_next_student_t(uint32_t (*f)(void *), void *v, double n)
+double at_get_next_student_t(double n, uint32_t (*f)(void *), void *v)
 {
         return
-                at_get_next_normal(f, v, 0.0, 1.0) /
-                sqrt(at_get_next_chi_squared(f, v, n) / n);
+                at_get_next_normal(0.0, 1.0, f, v) /
+                sqrt(at_get_next_chi_squared(n, f, v) / n);
 }

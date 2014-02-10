@@ -10,7 +10,7 @@
 
 
 int32_t at_get_next_uniform_i(
-        uint32_t (*f)(void *), void *v, int32_t l, int32_t u)
+        int32_t l, int32_t u, uint32_t (*f)(void *), void *v)
 {
         return floor(f(v) * _01 * (u - l + 1) + l);
 }
@@ -18,7 +18,7 @@ int32_t at_get_next_uniform_i(
 
 
 double at_get_next_uniform_f(
-        uint32_t (*f)(void *), void *v, double l, double u)
+        double l, double u, uint32_t (*f)(void *), void *v)
 {
         return f(v) * _01 * (u - l) + l;
 }

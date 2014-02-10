@@ -9,7 +9,7 @@
 
 
 
-int at_get_next_bernoulli(uint32_t (*f)(void *), void *v, double p)
+int at_get_next_bernoulli(double p, uint32_t (*f)(void *), void *v)
 {
         return f(v) * _01 < p;
 }
@@ -17,7 +17,7 @@ int at_get_next_bernoulli(uint32_t (*f)(void *), void *v, double p)
 
 
 unsigned at_get_next_binomial(
-        uint32_t (*f)(void *), void *v, unsigned t, double p)
+        unsigned t, double p, uint32_t (*f)(void *), void *v)
 {
         unsigned i;
         unsigned count = 0;
@@ -32,7 +32,7 @@ unsigned at_get_next_binomial(
 
 
 unsigned at_get_next_negative_binomial(
-        uint32_t (*f)(void *), void *v, unsigned k, double p)
+        unsigned k, double p, uint32_t (*f)(void *), void *v)
 {
         unsigned kcount = 0;
         unsigned count = 0;
@@ -48,7 +48,7 @@ unsigned at_get_next_negative_binomial(
 
 
 
-unsigned at_get_next_geometric(uint32_t (*f)(void *), void *v, double p)
+unsigned at_get_next_geometric(double p, uint32_t (*f)(void *), void *v)
 {
         double x = 1.0 - f(v) * _01;
         return floor(log(x) / log(1 - p));

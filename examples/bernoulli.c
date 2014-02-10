@@ -31,7 +31,7 @@ int main(int argc, char *argv[])
         n = abs(atoi(argv[2]));
 
         for (i = 0; i < n; ++i)
-                ++counter[at_get_next_bernoulli(next, &x, chance)];
+                ++counter[at_get_next_bernoulli(chance, next, &x)];
 
         printf("%d tests with %.2f%% chance\n", n, chance * 100);
         printf("false: %d\n", counter[0]);

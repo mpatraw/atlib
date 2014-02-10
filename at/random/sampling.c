@@ -13,20 +13,19 @@
 #define MAX(a, b)       ((a) > (b) ? (a) : (b))
 
 
-
 unsigned at_get_next_discrete(
-        uint32_t (*f)(void *), void *v, double *w, unsigned l)
+        double *w, size_t sz, uint32_t (*f)(void *), void *v)
 {
         unsigned i = 0;
         double sum = 0.0;
         double accum = 0.0;
         double u = f(v) * _01;
 
-        for (i = 0; i < l; ++i)
+        for (i = 0; i < sz; ++i)
                 sum += w[i];
 
 
-        for (i = 0; i < l; ++i)
+        for (i = 0; i < sz; ++i)
         {
                 accum += w[i] / sum;
                 if (u < accum)
@@ -39,25 +38,25 @@ unsigned at_get_next_discrete(
 
 
 double at_get_next_piecewise_constant(
-        uint32_t (*f)(void *), void *v, double *w, double *b, double l)
+        double *w, double *b, size_t sz, uint32_t (*f)(void *), void *v)
 {
-        unsigned i = at_get_next_discrete(f, v, w, l);
+        size_t i = at_get_next_discrete(w, sz, f, v);
         return f(v) * _01 * (b[i + 1] - b[i]) + b[i];
 }
 
 
 
 double at_get_next_piecewise_linear(
-        uint32_t (*f)(void *), void *v,
-        double *w, double *b, double *t, double l)
+        double *w, double *b, double *t, size_t sz,
+        uint32_t (*f)(void *), void *v)
 {
         double width;
         double w1;
         double w2;
-        unsigned i;
+        size_t i;
         int is_in_rectangle;
 
-        for (i = 0; i < l - 1; ++i)
+        for (i = 0; i < sz - 1; ++i)
         {
                 width = b[i + 1] - b[i];
                 w1 = w[i];
@@ -67,7 +66,7 @@ double at_get_next_piecewise_linear(
         }
 
 
-        i = at_get_next_discrete(f, v, t, (l - 1) * 2);
+        i = at_get_next_discrete(t, (sz - 1) * 2, f, v);
         is_in_rectangle = i % 2 == 0;
         i /= 2;
 

@@ -11,10 +11,16 @@
 extern "C" {
 #endif
 
+/**
+ * returns the next integer in the range [l, u]
+ */
 int32_t at_get_next_uniform_i(
-        uint32_t (*f)(void *), void *v, int32_t l, int32_t u);
+        int32_t l, int32_t u, uint32_t (*f)(void *), void *v);
+/**
+ * returns the next float in the range [l, u)
+ */
 double at_get_next_uniform_f(
-        uint32_t (*f)(void *), void *v, double l, double u);
+        double l, double u, uint32_t (*f)(void *), void *v);
 
 #ifdef __cplusplus
 }
