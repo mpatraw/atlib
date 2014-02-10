@@ -51,7 +51,7 @@ void cast_light(struct shadowfov *fov,
                         in_radius = CHECK_DIST(dx, dy, fov->radius);
                         is_opaque = IS_OPAQUE(fov, curx, cury);
 
-                        if (in_bounds)
+                        if (!in_bounds || start < right)
                                 continue;
                         else if (end > left)
                                 break;
@@ -91,14 +91,10 @@ void cast_light(struct shadowfov *fov,
 void at_shadowcast(int *view, int *grid, unsigned w, unsigned h, double r,
         int cx, int cy)
 {
-        static const int d[8][2] = {
+        static const int d[4][2] = {
                 {-1, -1},
-                {-1,  0},
                 {-1,  1},
-                { 0, -1},
-                { 0,  1},
                 { 1, -1},
-                { 1,  0},
                 { 1,  1}
         };
 
@@ -113,7 +109,7 @@ void at_shadowcast(int *view, int *grid, unsigned w, unsigned h, double r,
         fov.x0 = cx;
         fov.y0 = cy;
 
-        for (i = 0; i < 8; ++i)
+        for (i = 0; i < 4; ++i)
         {
                 cast_light(&fov, 1, 1.0, 0.0, 0, d[i][0], d[i][1], 0);
                 cast_light(&fov, 1, 1.0, 0.0, d[i][0], 0, 0, d[i][1]);

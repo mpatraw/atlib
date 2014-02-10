@@ -6,6 +6,7 @@
 #include <time.h>
 #include <stdint.h>
 
+#include "at/fov.h"
 #include "at/noise.h"
 #include "at/random.h"
 
@@ -23,39 +24,64 @@ do {                                                                    \
 
 int tests_run = 0;
 
+
+
 static uint32_t next(void *r)
 {
         return at_xorshift_next(r);
 }
 
-static const char *test_rng(void)
+
+
+static const char *test(void)
 {
-        double w[] = {0.0, 1.0, 1.0, 0.0};
-        double b[] = {0.0, 5.0, 5.0, 10.0};
-        double t[6];
-        int i;
-        double j;
-        struct at_bjenkins bob;
-        struct at_simplex sim;
-        at_bjenkins_seed(&bob, time(NULL));
-        at_simplex_seed(&sim, next, &bob);
+        unsigned x, y;
+#define W 20
+#define H 10
+        int view[W * H];
+        int grid[W * H] = {
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+        };
 
-        /*mu_assert("error, next_integer(1, 1) != 1",
-                at_next_integer(r, 1, 1) == 1);*/
+        memset(view, 0, sizeof(*view) * W * H);
 
-        for (i = 0; i < 50000000; ++i)
+        at_shadowcast(view, grid, W, H, 10.0, 10, 5);
+
+        for (y = 0; y < H; ++y)
         {
-                j = at_bjenkins_next(&bob);
+                for (x = 0; x < W; ++x)
+                {
+                        if (x == 10 && y == 5)
+                                printf("*");
+                        else if (view[y * W + x])
+                                printf("%c", grid[y * W + x] ? '#' : '.');
+                        else
+                                printf(" ");
+                }
+                printf("\n");
         }
 
         return NULL;
 }
 
+
+
 static const char *test_all(void)
 {
-        mu_run_test(test_rng);
+        mu_run_test(test);
         return NULL;
 }
+
+
 
 int main(int argc, char *argv[])
 {

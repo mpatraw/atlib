@@ -24,20 +24,17 @@ static void ray(int *view, int *grid, unsigned w, unsigned h, double r,
         {
                 if (x >= 0 && y >= 0 && x < w && y < h)
                 {
-                        if (!grid[y * w + x])
-                        {
-                                view[y * w + x] = 1;
-                                break;
-                        }
-                        if (SQ(x1 - x) + SQ(y1 - y) > SQ(r))
-                                break;
                         view[y * w + x] = 1;
+                        if (grid[y * w + x])
+                                break;
+                        if (SQ(x - x0) + SQ(y - y0) >= SQ(r))
+                                break;
                 }
 
                 if (x == x1 && y == y1)
                         break;
                 e2 = err;
-                if (e2 >-dx)
+                if (e2 > -dx)
                 {
                         err -= dy;
                         x += sx;
@@ -55,7 +52,7 @@ static void ray(int *view, int *grid, unsigned w, unsigned h, double r,
 void at_raycast(int *view, int *grid, unsigned w, unsigned h, double r,
         int cx, int cy)
 {
-        unsigned v;
+        int v;
 
         for (v = cx - r; v <= cx + r; ++v)
                 ray(view, grid, w, h, r, cx, cy, v, cy - r);
