@@ -1,4 +1,7 @@
 
+/**
+ * raycast field of view algorithm
+ */
 #ifndef AT_RAYCAST_H
 #define AT_RAYCAST_H
 

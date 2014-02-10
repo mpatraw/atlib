@@ -22,7 +22,7 @@ do {                                                                    \
         if (message) return message;                                    \
 } while (0)                                                             \
 
-int tests_run = 0;
+static int tests_run = 0;
 
 
 

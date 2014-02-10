@@ -1,4 +1,7 @@
 
+/**
+ * shadowcast field of view algorithm
+ */
 #ifndef AT_SHADOWCAST_H
 #define AT_SHADOWCAST_H
 
