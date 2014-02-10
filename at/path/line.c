@@ -5,6 +5,10 @@
 
 
 
+#define MAX(a, b) ((a) > (b) ? (a) : (b))
+
+
+
 void at_path_line(int *path, unsigned *sz, int x0, int y0, int x1, int y1)
 {
         int dx = abs(x1 - x0);
@@ -13,6 +17,13 @@ void at_path_line(int *path, unsigned *sz, int x0, int y0, int x1, int y1)
         int sy = y0 < y1 ? 1 : -1;
         int err = (dx > dy ? dx : -dy) / 2, e2;
         int i = 0;
+
+        /* compute length of the line without pathing */
+        if (!path)
+        {
+                *sz = (MAX(abs(x1 - x0), abs(y1 - y0)) + 1) * 2;
+                return;
+        }
 
         for (;;)
         {
@@ -28,5 +39,5 @@ void at_path_line(int *path, unsigned *sz, int x0, int y0, int x1, int y1)
                 if (e2 <  dy) { err += dx; y0 += sy; }
         }
 
-        *sz = i;
+        *sz = i * 2;
 }

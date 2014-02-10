@@ -27,8 +27,9 @@ int main(int argc, char *argv[])
         x1 = abs(atoi(argv[3]));
         y1 = abs(atoi(argv[4]));
 
-        /* twice the normal size for x and y coordinates */
-        path = malloc(sizeof(*path) * (MAX(abs(x1 - x0), abs(y1 - y0)) + 1) * 2);
+        /* twice the path length for x and y coordinates */
+        at_path_line(NULL, &sz, x0, y0, x1, y1);
+        path = malloc(sizeof(*path) * sz);
 
         if (!path)
         {
@@ -38,8 +39,8 @@ int main(int argc, char *argv[])
 
         at_path_line(path, &sz, x0, y0, x1, y1);
 
-        for (i = 0; i < sz; ++i)
-                printf("%d, %d\n", path[(i * 2)], path[(i * 2) + 1]);
+        for (i = 0; i < sz; i += 2)
+                printf("%d, %d\n", path[i], path[i + 1]);
 
         return 0;
 }
