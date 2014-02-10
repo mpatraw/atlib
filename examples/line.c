@@ -27,7 +27,7 @@ int main(int argc, char *argv[])
         x1 = abs(atoi(argv[3]));
         y1 = abs(atoi(argv[4]));
 
-        /* twice the path length for x and y coordinates */
+        /* compute line length needed */
         at_path_line(NULL, &sz, x0, y0, x1, y1);
         path = malloc(sizeof(*path) * sz);
 
