@@ -42,6 +42,10 @@ double at_get_next_cauchy(
  */
 double at_get_next_fischer_f(
         uint32_t (*f)(void *), void *v, double m, double n);
+/**
+ * returns a random number according to the student-t distribution.
+ */
+double at_get_next_student_t(uint32_t (*f)(void *), void *v, double n)
 
 #ifdef __cplusplus
 }
