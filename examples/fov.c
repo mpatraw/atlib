@@ -1,11 +1,8 @@
 
 #include <stdio.h>
 #include <string.h>
-#include <time.h>
 
 #include <at/fov.h>
-#include <at/noise.h>
-#include <at/random.h>
 
 
 
