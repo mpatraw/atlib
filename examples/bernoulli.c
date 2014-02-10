@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         for (i = 0; i < n; ++i)
                 ++counter[at_next_bernoulli(next, &x, chance)];
 
-        printf("%d tests with %%%.2f chance\n", n, chance * 100);
+        printf("%d tests with %.2f%% chance\n", n, chance * 100);
         printf("false: %d\n", counter[0]);
         printf("true : %d\n", counter[1]);
 
