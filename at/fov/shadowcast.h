@@ -6,8 +6,8 @@
 extern "C" {
 #endif
 
-void at_shadowcast(int *view, int *grid, unsigned w, unsigned h, double r,
-        int cx, int cy);
+void at_do_shadowcast_fov(int *view, int *grid, unsigned w, unsigned h,
+        double r, int cx, int cy);
 
 #ifdef __cplusplus
 }

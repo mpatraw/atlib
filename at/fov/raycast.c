@@ -49,7 +49,7 @@ static void ray(int *view, int *grid, unsigned w, unsigned h, double r,
 
 
 
-void at_raycast(int *view, int *grid, unsigned w, unsigned h, double r,
+void at_do_raycast_fov(int *view, int *grid, unsigned w, unsigned h, double r,
         int cx, int cy)
 {
         int v;

@@ -20,15 +20,15 @@ struct at_turbulence
 extern "C" {
 #endif
 
-double at_turbulence_2d(
+double at_turbulence_get_2d(struct at_turbulence *turb,
         double (*f)(void *, double, double), void *v,
-        struct at_turbulence *turb, double x, double y);
-double at_turbulence_3d(
+        double x, double y);
+double at_turbulence_get_3d(struct at_turbulence *turb,
         double (*f)(void *, double, double, double), void *v,
-        struct at_turbulence *turb, double x, double y, double z);
-double at_turbulence_4d(
+        double x, double y, double z);
+double at_turbulence_get_4d(struct at_turbulence *turb,
         double (*f)(void *, double, double, double, double), void *v,
-        struct at_turbulence *turb, double x, double y, double z, double w);
+        double x, double y, double z, double w);
 
 #ifdef __cplusplus
 }

@@ -37,33 +37,33 @@ static double at_3dto4d(void *v, double x, double y, double z, double w)
 
 
 
-double at_turbulence_2d(
+double at_turbulence_get_2d(struct at_turbulence *turb,
         double (*f)(void *, double, double), void *v,
-        struct at_turbulence *turb, double x, double y)
+        double x, double y)
 {
         struct at_2d _;
         _.f = f;
         _.v = v;
-        return at_turbulence_4d(at_2dto4d, &_, turb, x, y, 0, 0);
+        return at_turbulence_get_4d(turb, at_2dto4d, &_, x, y, 0, 0);
 }
 
 
 
-double at_turbulence_3d(
+double at_turbulence_get_3d(struct at_turbulence *turb,
         double (*f)(void *, double, double, double), void *v,
-        struct at_turbulence *turb, double x, double y, double z)
+        double x, double y, double z)
 {
         struct at_3d _;
         _.f = f;
         _.v = v;
-        return at_turbulence_4d(at_3dto4d, &_, turb, x, y, z, 0);
+        return at_turbulence_get_4d(turb, at_3dto4d, &_, x, y, z, 0);
 }
 
 
 
-double at_turbulence_4d(
+double at_turbulence_get_4d(struct at_turbulence *turb,
         double (*f)(void *, double, double, double, double), void *v,
-        struct at_turbulence *turb, double x, double y, double z, double w)
+        double x, double y, double z, double w)
 {
         unsigned i;
 

@@ -1,43 +1,22 @@
 
-#include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <time.h>
-#include <stdint.h>
 
-#include "at/fov.h"
-#include "at/noise.h"
-#include "at/random.h"
-
-#define mu_assert(message, test)                                        \
-do {                                                                    \
-        if (!(test)) return message;                                    \
-} while (0)                                                             \
-
-#define mu_run_test(test)                                               \
-do {                                                                    \
-        const char *message = test();                                   \
-        tests_run++;                                                    \
-        if (message) return message;                                    \
-} while (0)                                                             \
-
-int tests_run = 0;
+#include <at/fov.h>
+#include <at/noise.h>
+#include <at/random.h>
 
 
 
-static uint32_t next(void *r)
-{
-        return at_xorshift_next(r);
-}
-
-
-
-static const char *test(void)
-{
-        unsigned x, y;
 #define W 20
 #define H 10
+
+
+
+int main(int argc, char *argv[])
+{
+        unsigned x, y;
         int view[W * H];
         int grid[W * H] = {
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -70,26 +49,5 @@ static const char *test(void)
                 printf("\n");
         }
 
-        return NULL;
-}
-
-
-
-static const char *test_all(void)
-{
-        mu_run_test(test);
-        return NULL;
-}
-
-
-
-int main(int argc, char *argv[])
-{
-        const char *result = test_all();
-        if (result)
-                printf("%s\n", result);
-        else
-                printf("all tests passed\n");
-
-        return result != NULL;
+        return 0;
 }

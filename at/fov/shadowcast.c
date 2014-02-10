@@ -88,8 +88,8 @@ void cast_light(struct shadowfov *fov,
 
 
 
-void at_shadowcast(int *view, int *grid, unsigned w, unsigned h, double r,
-        int cx, int cy)
+void at_do_shadowcast_fov(int *view, int *grid, unsigned w, unsigned h,
+        double r, int cx, int cy)
 {
         static const int d[4][2] = {
                 {-1, -1},

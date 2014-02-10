@@ -117,7 +117,7 @@ void at_simplex_seed(struct at_simplex *sim, uint32_t (*f)(void *), void *v)
 
 
 
-double at_simplex_2d(struct at_simplex *sim, double x, double y)
+double at_simplex_get_2d(struct at_simplex *sim, double x, double y)
 {
         double n0, n1, n2;
         double x1, x2, y1, y2;
@@ -198,7 +198,7 @@ double at_simplex_2d(struct at_simplex *sim, double x, double y)
 
 
 
-double at_simplex_3d(struct at_simplex *sim, double x, double y, double z)
+double at_simplex_get_3d(struct at_simplex *sim, double x, double y, double z)
 {
         double n0, n1, n2, n3;
         double x1, y1, z1, x2, y2, z2, x3, y3, z3;
@@ -321,7 +321,7 @@ double at_simplex_3d(struct at_simplex *sim, double x, double y, double z)
 
 
 
-double at_simplex_4d(
+double at_simplex_get_4d(
         struct at_simplex *sim, double x, double y, double z, double w)
 {
         double F4 = (sqrt(5.0) - 1.0) / 4.0;

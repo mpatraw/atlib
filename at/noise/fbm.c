@@ -37,33 +37,33 @@ static double at_3dto4d(void *v, double x, double y, double z, double w)
 
 
 
-double at_fbm_2d(
+double at_fbm_get_2d(struct at_fbm *fbm,
         double (*f)(void *, double, double), void *v,
-        struct at_fbm *fbm, double x, double y)
+        double x, double y)
 {
         struct at_2d _;
         _.f = f;
         _.v = v;
-        return at_fbm_4d(at_2dto4d, &_, fbm, x, y, 0, 0);
+        return at_fbm_get_4d(fbm, at_2dto4d, &_, x, y, 0, 0);
 }
 
 
 
-double at_fbm_3d(
+double at_fbm_get_3d(struct at_fbm *fbm,
         double (*f)(void *, double, double, double), void *v,
-        struct at_fbm *fbm, double x, double y, double z)
+        double x, double y, double z)
 {
         struct at_3d _;
         _.f = f;
         _.v = v;
-        return at_fbm_4d(at_3dto4d, &_, fbm, x, y, z, 0);
+        return at_fbm_get_4d(fbm, at_3dto4d, &_, x, y, z, 0);
 }
 
 
 
-double at_fbm_4d(
+double at_fbm_get_4d(struct at_fbm *fbm,
         double (*f)(void *, double, double, double, double), void *v,
-        struct at_fbm *fbm, double x, double y, double z, double w)
+        double x, double y, double z, double w)
 {
         unsigned i;
 

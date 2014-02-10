@@ -20,15 +20,14 @@ struct at_fbm
 extern "C" {
 #endif
 
-double at_fbm_2d(
-        double (*f)(void *, double, double), void *v,
-        struct at_fbm *fbm, double x, double y);
-double at_fbm_3d(
+double at_fbm_get_2d(struct at_fbm *fbm,
+        double (*f)(void *, double, double), void *v, double x, double y);
+double at_fbm_get_3d(struct at_fbm *fbm,
         double (*f)(void *, double, double, double), void *v,
-        struct at_fbm *fbm, double x, double y, double z);
-double at_fbm_4d(
+        double x, double y, double z);
+double at_fbm_get_4d(struct at_fbm *fbm,
         double (*f)(void *, double, double, double, double), void *v,
-        struct at_fbm *fbm, double x, double y, double z, double w);
+        double x, double y, double z, double w);
 
 #ifdef __cplusplus
 }
