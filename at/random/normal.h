@@ -11,13 +11,15 @@
 extern "C" {
 #endif
 
-double at_next_normal(uint32_t (*f)(void *), void *v, double mean, double dev);
-double at_next_lognormal(
+double at_get_next_normal(
         uint32_t (*f)(void *), void *v, double mean, double dev);
-double at_next_chi_squared(uint32_t (*f)(void *), void *v, double n);
-double at_next_cauchy(
+double at_get_next_lognormal(
+        uint32_t (*f)(void *), void *v, double mean, double dev);
+double at_get_next_chi_squared(uint32_t (*f)(void *), void *v, double n);
+double at_get_next_cauchy(
         uint32_t (*f)(void *), void *v, double median, double dev);
-double at_next_fischer_f(uint32_t (*f)(void *), void *v, double m, double n);
+double at_get_next_fischer_f(
+        uint32_t (*f)(void *), void *v, double m, double n);
 
 #ifdef __cplusplus
 }

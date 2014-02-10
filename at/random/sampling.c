@@ -14,7 +14,8 @@
 
 
 
-unsigned at_next_discrete(uint32_t (*f)(void *), void *v, double *w, unsigned l)
+unsigned at_get_next_discrete(
+        uint32_t (*f)(void *), void *v, double *w, unsigned l)
 {
         unsigned i = 0;
         double sum = 0.0;
@@ -37,16 +38,16 @@ unsigned at_next_discrete(uint32_t (*f)(void *), void *v, double *w, unsigned l)
 
 
 
-double at_next_piecewise_constant(
+double at_get_next_piecewise_constant(
         uint32_t (*f)(void *), void *v, double *w, double *b, double l)
 {
-        unsigned i = at_next_discrete(f, v, w, l);
+        unsigned i = at_get_next_discrete(f, v, w, l);
         return f(v) * _01 * (b[i + 1] - b[i]) + b[i];
 }
 
 
 
-double at_next_piecewise_linear(
+double at_get_next_piecewise_linear(
         uint32_t (*f)(void *), void *v,
         double *w, double *b, double *t, double l)
 {
@@ -66,7 +67,7 @@ double at_next_piecewise_linear(
         }
 
 
-        i = at_next_discrete(f, v, t, (l - 1) * 2);
+        i = at_get_next_discrete(f, v, t, (l - 1) * 2);
         is_in_rectangle = i % 2 == 0;
         i /= 2;
 

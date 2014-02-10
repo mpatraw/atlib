@@ -13,7 +13,7 @@
 int main(int argc, char *argv[])
 {
         int *path;
-        unsigned i, sz;
+        size_t i, sz;
         int x0, y0, x1, y1;
 
         if (argc < 5)

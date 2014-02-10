@@ -9,7 +9,7 @@
 
 
 
-unsigned at_next_poisson(uint32_t (*f)(void *), void *v, double mean)
+unsigned at_get_next_poisson(uint32_t (*f)(void *), void *v, double mean)
 {
         unsigned x = 0;
         double p = exp(-mean);
@@ -27,21 +27,22 @@ unsigned at_next_poisson(uint32_t (*f)(void *), void *v, double mean)
 
 
 
-double at_next_exponential(uint32_t (*f)(void *), void *v, double lambda)
+double at_get_next_exponential(uint32_t (*f)(void *), void *v, double lambda)
 {
         return -1.0 / lambda * log(1.0 - f(v) * _01);
 }
 
 
 
-double at_next_gamma(uint32_t (*f)(void *), void *v, double alpha, double beta)
+double at_get_next_gamma(
+        uint32_t (*f)(void *), void *v, double alpha, double beta)
 {
         const double pi = 3.14159265358979323846;
         double x;
 
         if (alpha == 1.0)
         {
-                return at_next_exponential(f, v, 1.0) * beta;
+                return at_get_next_exponential(f, v, 1.0) * beta;
         }
         else if (alpha > 1.0)
         {
@@ -66,7 +67,7 @@ double at_next_gamma(uint32_t (*f)(void *), void *v, double alpha, double beta)
                 for (; ; )
                 {
                         double u = f(v) * _01;
-                        double y = at_next_exponential(f, v, 1.0);
+                        double y = at_get_next_exponential(f, v, 1.0);
                         double p = exp(1.0) / (alpha + exp(1.0));
                         double q;
 
@@ -91,14 +92,14 @@ double at_next_gamma(uint32_t (*f)(void *), void *v, double alpha, double beta)
 
 
 
-double at_next_weibull(uint32_t (*f)(void *), void *v, double a, double b)
+double at_get_next_weibull(uint32_t (*f)(void *), void *v, double a, double b)
 {
         return b * pow(-log(1.0 - f(v) * _01), 1.0 / a);
 }
 
 
 
-double at_next_extreme_value(uint32_t (*f)(void *), void *v, double a, double b)
+double at_get_next_extreme_value(uint32_t (*f)(void *), void *v, double a, double b)
 {
         return a - log(-log(f(v) * _01)) * b;
 }

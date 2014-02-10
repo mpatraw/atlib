@@ -28,7 +28,7 @@ void at_mt_seed(struct at_mt *mt, uint32_t seed)
 
 
 
-uint32_t at_mt_next(struct at_mt *mt)
+uint32_t at_mt_get_next(struct at_mt *mt)
 {
         const uint32_t mag[2] = {0, 0x9908b0df};
         uint32_t *s = mt->_state;

@@ -14,7 +14,7 @@ void at_xorshift_seed(struct at_xorshift *xorshift, uint32_t seed)
 
 
 
-uint32_t at_xorshift_next(struct at_xorshift *xorshift)
+uint32_t at_xorshift_get_next(struct at_xorshift *xorshift)
 {
         uint32_t *s = xorshift->_state;
         uint32_t t = s[0] ^ (s[0] << 11);

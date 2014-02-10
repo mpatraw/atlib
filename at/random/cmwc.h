@@ -1,6 +1,6 @@
 
 /*******************************************************************************
- * cmwc
+ * cmwc - complimentary multiply with carry
  *
  * medium speed, high memory, period ~= 2^131104
  */
@@ -22,8 +22,15 @@ struct at_cmwc
 extern "C" {
 #endif
 
+/**
+ * seeds the cmwc random number generator. must be called before calling
+ * at_cmwc_get_next
+ */
 void at_cmwc_seed(struct at_cmwc *cmwc, uint32_t seed);
-uint32_t at_cmwc_next(struct at_cmwc *cmwc);
+/**
+ * returns the next random unsigned integer in the range [0, 2^32).
+ */
+uint32_t at_cmwc_get_next(struct at_cmwc *cmwc);
 
 #ifdef __cplusplus
 }

@@ -17,8 +17,8 @@ struct shadowfov
 {
         int *view;
         int *grid;
-        unsigned width;
-        unsigned height;
+        size_t width;
+        size_t height;
         double radius;
         int x0;
         int y0;
@@ -88,8 +88,8 @@ void cast_light(struct shadowfov *fov,
 
 
 
-void at_do_shadowcast_fov(int *view, int *grid, unsigned w, unsigned h,
-        double r, int cx, int cy)
+void at_do_shadowcast_fov(int *view, int *grid, size_t w, size_t h, double r,
+        int cx, int cy)
 {
         static const int d[4][2] = {
                 {-1, -1},
@@ -99,7 +99,7 @@ void at_do_shadowcast_fov(int *view, int *grid, unsigned w, unsigned h,
         };
 
         struct shadowfov fov;
-        unsigned i;
+        size_t i;
 
         fov.view = view;
         fov.grid = grid;

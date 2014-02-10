@@ -20,7 +20,7 @@ void at_cmwc_seed(struct at_cmwc *cmwc, uint32_t seed)
 
 
 
-uint32_t at_cmwc_next(struct at_cmwc *cmwc)
+uint32_t at_cmwc_get_next(struct at_cmwc *cmwc)
 {
         uint32_t *s = cmwc->_state;
         uint32_t *c = &cmwc->_carry;

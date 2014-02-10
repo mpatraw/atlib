@@ -15,12 +15,12 @@ void at_bjenkins_seed(struct at_bjenkins *bjenkins, uint32_t seed)
         s[0] = 0xf1ea5eed;
         s[1] = s[2] = s[3] = seed;
         for (i = 0; i < 20; ++i)
-                (void)at_bjenkins_next(bjenkins);
+                (void)at_bjenkins_get_next(bjenkins);
 }
 
 
 
-uint32_t at_bjenkins_next(struct at_bjenkins *bjenkins)
+uint32_t at_bjenkins_get_next(struct at_bjenkins *bjenkins)
 {
         uint32_t *s = bjenkins->_state;
 

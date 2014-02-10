@@ -17,7 +17,7 @@ static int seed(lua_State *L)
 
 static int rand(lua_State *L)
 {
-        lua_pushnumber(L, (lua_Number)at_xorshift_next(&x));
+        lua_pushnumber(L, (lua_Number)at_xorshift_get_next(&x));
         return 1;
 }
 

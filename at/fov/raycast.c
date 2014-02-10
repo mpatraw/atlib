@@ -9,7 +9,7 @@
 
 
 
-static void ray(int *view, int *grid, unsigned w, unsigned h, double r,
+static void ray(int *view, int *grid, size_t w, size_t h, double r,
         int x0, int y0, int x1, int y1)
 {
         int dx = abs(x1 - x0);
@@ -49,7 +49,7 @@ static void ray(int *view, int *grid, unsigned w, unsigned h, double r,
 
 
 
-void at_do_raycast_fov(int *view, int *grid, unsigned w, unsigned h, double r,
+void at_do_raycast_fov(int *view, int *grid, size_t w, size_t h, double r,
         int cx, int cy)
 {
         int v;

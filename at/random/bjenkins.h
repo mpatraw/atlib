@@ -20,8 +20,15 @@ struct at_bjenkins
 extern "C" {
 #endif
 
+/**
+ * seeds the bjenkins random number generator. must be called before calling
+ * at_bjenkins_get_next
+ */
 void at_bjenkins_seed(struct at_bjenkins *bjenkins, uint32_t seed);
-uint32_t at_bjenkins_next(struct at_bjenkins *bjenkins);
+/**
+ * returns the next random unsigned integer in the range [0, 2^32).
+ */
+uint32_t at_bjenkins_get_next(struct at_bjenkins *bjenkins);
 
 #ifdef __cplusplus
 }

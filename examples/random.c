@@ -13,7 +13,7 @@
  */
 uint32_t next(void *rng)
 {
-        return at_xorshift_next(rng);
+        return at_xorshift_get_next(rng);
 }
 
 
@@ -33,7 +33,7 @@ int main(int argc, char *argv[])
         /* roll XdY */
         for (i = 0; i < atoi(argv[1]); ++i)
         {
-                n = at_next_uniform_i(next, &x, 1, abs(atoi(argv[2])));
+                n = at_get_next_uniform_i(next, &x, 1, abs(atoi(argv[2])));
                 printf("%d\n", n);
                 sum += n;
         }

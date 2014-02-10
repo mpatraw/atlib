@@ -20,8 +20,15 @@ struct at_xorshift
 extern "C" {
 #endif
 
+/**
+ * seeds the xorshift random number generator. must be called before calling
+ * at_xorshift_get_next
+ */
 void at_xorshift_seed(struct at_xorshift *xorshift, uint32_t seed);
-uint32_t at_xorshift_next(struct at_xorshift *xorshift);
+/**
+ * returns the next random unsigned integer in the range [0, 2^32).
+ */
+uint32_t at_xorshift_get_next(struct at_xorshift *xorshift);
 
 #ifdef __cplusplus
 }
