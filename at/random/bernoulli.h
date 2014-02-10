@@ -12,8 +12,9 @@ extern "C" {
 #endif
 
 /**
- * for these functions, "f" is the random number generator function, and "v"
- * will be the necessary data that is passed to that function.
+ * for these functions, "f" is the random number generator function which must
+ * return an unsigned integer in the range [0, 2^32), and "v" will be the
+ * necessary data that is passed to that function.
  */
 
 /**
