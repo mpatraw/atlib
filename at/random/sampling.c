@@ -51,8 +51,8 @@ double at_get_next_piecewise_linear(
         uint32_t (*f)(void *), void *v)
 {
         double width;
-        double w1;
-        double w2;
+        double w1, w2;
+        double r1, r2;
         size_t i;
         int is_in_rectangle;
 
@@ -67,15 +67,20 @@ double at_get_next_piecewise_linear(
 
 
         i = at_get_next_discrete(t, (sz - 1) * 2, f, v);
-        is_in_rectangle = i % 2 == 0;
+        is_in_rectangle = (i % 2 == 0);
         i /= 2;
 
         if (is_in_rectangle)
+        {
                 return f(v) * _01 * (b[i + 1] - b[i]) + b[i];
-        else if (w[i] < w[i + 1])
-                return MAX(f(v) * _01 * (b[i + 1] - b[i]) + b[i],
-                        f(v) * _01 * (b[i + 1] - b[i]) + b[i]);
+        }
         else
-                return MIN(f(v) * _01 * (b[i + 1] - b[i]) + b[i],
-                        f(v) * _01 * (b[i + 1] - b[i]) + b[i]);
+        {
+                r1 = f(v) * _01 * (b[i + 1] - b[i]) + b[i];
+                r2 = f(v) * _01 * (b[i + 1] - b[i]) + b[i];
+                if (w[i] < w[i + 1])
+                        return MAX(r1, r2);
+                else
+                        return MIN(r1, r2);
+        }
 }
