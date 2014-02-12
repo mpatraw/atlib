@@ -9,7 +9,7 @@
 
 
 
-void at_path_line(int *path, size_t *sz, int x0, int y0, int x1, int y1)
+void at_path_line(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1)
 {
         int dx = abs(x1 - x0);
         int sx = x0 < x1 ? 1 : -1;
@@ -19,18 +19,18 @@ void at_path_line(int *path, size_t *sz, int x0, int y0, int x1, int y1)
         int i = 0;
 
         /* compute length of the line without pathing */
-        if (!path)
+        if (!xs || !ys)
         {
-                *sz = (MAX(abs(x1 - x0), abs(y1 - y0)) + 1) * 2;
+                *sz = MAX(abs(x1 - x0), abs(y1 - y0)) + 1;
                 return;
         }
 
         for (;;)
         {
                 /* todo: should this check be here? */
-                /*if (i >= *sz - 1) break;*/
-                path[i * 2 + 0] = x0;
-                path[i * 2 + 1] = y0;
+                if (i >= *sz) break;
+                xs[i] = x0;
+                ys[i] = y0;
                 i++;
 
                 if (x0 == x1 && y0 == y1) break;
@@ -39,5 +39,5 @@ void at_path_line(int *path, size_t *sz, int x0, int y0, int x1, int y1)
                 if (e2 <  dy) { err += dx; y0 += sy; }
         }
 
-        *sz = i * 2;
+        *sz = i;
 }

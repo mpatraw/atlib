@@ -12,7 +12,8 @@
 
 int main(int argc, char *argv[])
 {
-        int *path;
+        int *xs;
+        int *ys;
         size_t i, sz;
         int x0, y0, x1, y1;
 
@@ -28,19 +29,20 @@ int main(int argc, char *argv[])
         y1 = abs(atoi(argv[4]));
 
         /* compute line length needed */
-        at_path_line(NULL, &sz, x0, y0, x1, y1);
-        path = malloc(sizeof(*path) * sz);
+        at_path_line(NULL, NULL, &sz, x0, y0, x1, y1);
+        xs = malloc(sizeof(*xs) * sz);
+        ys = malloc(sizeof(*ys) * sz);
 
-        if (!path)
+        if (!xs || !ys)
         {
                 perror("malloc");
                 return 1;
         }
 
-        at_path_line(path, &sz, x0, y0, x1, y1);
+        at_path_line(xs, ys, &sz, x0, y0, x1, y1);
 
-        for (i = 0; i < sz; i += 2)
-                printf("%d, %d\n", path[i], path[i + 1]);
+        for (i = 0; i < sz; ++i)
+                printf("%d, %d\n", xs[i], ys[i]);
 
         return 0;
 }
