@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 
         if (!xs || !ys)
         {
+                free(xs);
+                free(ys);
                 perror("malloc");
                 return 1;
         }

@@ -33,7 +33,7 @@
 
 - pathing and pathfinding functions
         + line
-        - a*
+        + a*
         - dijkstra
 
 - container functions
