@@ -27,9 +27,9 @@ int main(int argc, char *argv[])
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         };
-        int xs[100];
-        int ys[100];
-        size_t sz = 100, i;
+        int xs[12];
+        int ys[12];
+        size_t sz = 12, i;
 
         memset(display, 0, sizeof(*display) * W * H);
 
@@ -38,6 +38,7 @@ int main(int argc, char *argv[])
                         display[y * W + x] = grid[y * W + x] ? '#' : '.';
 
         at_path_a_star(xs, ys, &sz, grid, W, H, 0, 0, 6, 6);
+        printf("%d\n", sz);
 
 
         for (i = 0; i < sz; ++i)
