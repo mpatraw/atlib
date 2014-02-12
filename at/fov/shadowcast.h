@@ -2,8 +2,8 @@
 /**
  * shadowcast field of view algorithm
  */
-#ifndef AT_SHADOWCAST_H
-#define AT_SHADOWCAST_H
+#ifndef AT_FOV_SHADOWCAST_H
+#define AT_FOV_SHADOWCAST_H
 
 #include <stddef.h>
 

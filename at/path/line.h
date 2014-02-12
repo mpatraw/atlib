@@ -2,8 +2,8 @@
 /**
  * line pathing
  */
-#ifndef AT_LINE_H
-#define AT_LINE_H
+#ifndef AT_PATH_LINE_H
+#define AT_PATH_LINE_H
 
 #include <stddef.h>
 

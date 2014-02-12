@@ -4,8 +4,8 @@
  *
  * medium speed, medium memory, period = 2^19937 - 1
  */
-#ifndef AT_MT_H
-#define AT_MT_H
+#ifndef AT_RANDOM_MT_H
+#define AT_RANDOM_MT_H
 
 #include <stdint.h>
 

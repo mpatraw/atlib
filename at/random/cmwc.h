@@ -4,8 +4,8 @@
  *
  * medium speed, high memory, period ~= 2^131104
  */
-#ifndef AT_CMWC_H
-#define AT_CMWC_H
+#ifndef AT_RANDOM_CMWC_H
+#define AT_RANDOM_CMWC_H
 
 #include <stdint.h>
 

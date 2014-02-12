@@ -2,8 +2,8 @@
 /**
  * bernoulli distribution functions
  */
-#ifndef AT_BERNOULLI_H
-#define AT_BERNOULLI_H
+#ifndef AT_RANDOM_BERNOULLI_H
+#define AT_RANDOM_BERNOULLI_H
 
 #include <stdint.h>
 

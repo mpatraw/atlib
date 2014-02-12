@@ -2,8 +2,8 @@
 /**
  * fractal brownian moition for noise functions
  */
-#ifndef AT_FBM_H
-#define AT_FBM_H
+#ifndef AT_NOISE_FBM_H
+#define AT_NOISE_FBM_H
 
 #include <stdint.h>
 

@@ -1,6 +1,6 @@
 
-#ifndef AT_SIMPLEX_H
-#define AT_SIMPLEX_H
+#ifndef AT_NOISE_SIMPLEX_H
+#define AT_NOISE_SIMPLEX_H
 
 #include <stdint.h>
 

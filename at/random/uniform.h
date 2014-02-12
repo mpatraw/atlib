@@ -2,8 +2,8 @@
 /**
  * uniform distribution functions
  */
-#ifndef AT_UNIFORM_H
-#define AT_UNIFORM_H
+#ifndef AT_RANDOM_UNIFORM_H
+#define AT_RANDOM_UNIFORM_H
 
 #include <stdint.h>
 

@@ -4,8 +4,8 @@
  *
  * https://groups.google.com/forum/?fromgroups#!msg/sci.crypt.random-numbers/LAuBGOErdrk/xrMBr3guA7IJ
  */
-#ifndef AT_BJENKINS_H
-#define AT_BJENKINS_H
+#ifndef AT_RANDOM_BJENKINS_H
+#define AT_RANDOM_BJENKINS_H
 
 #include <stdint.h>
 

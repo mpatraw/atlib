@@ -1,6 +1,6 @@
 
-#ifndef AT_PERLIN_H
-#define AT_PERLIN_H
+#ifndef AT_NOISE_PERLIN_H
+#define AT_NOISE_PERLIN_H
 
 #include <stdint.h>
 

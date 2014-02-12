@@ -2,8 +2,8 @@
 /**
  * normal distribution functions, requires poisson distribution
  */
-#ifndef AT_NORMAL_H
-#define AT_NORMAL_H
+#ifndef AT_RANDOM_NORMAL_H
+#define AT_RANDOM_NORMAL_H
 
 #include <stdint.h>
 

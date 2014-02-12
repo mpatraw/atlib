@@ -4,8 +4,8 @@
  *
  * fast speed, low memory, period = 2^128 - 1
  */
-#ifndef AT_XORSHIFT_H
-#define AT_XORSHIFT_H
+#ifndef AT_RANDOM_XORSHIFT_H
+#define AT_RANDOM_XORSHIFT_H
 
 #include <stdint.h>
 

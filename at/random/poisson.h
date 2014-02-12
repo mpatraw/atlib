@@ -2,8 +2,8 @@
 /**
  * poisson distribution functions
  */
-#ifndef AT_POISSON_H
-#define AT_POISSON_H
+#ifndef AT_RANDOM_POISSON_H
+#define AT_RANDOM_POISSON_H
 
 #include <stdint.h>
 

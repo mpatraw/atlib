@@ -2,8 +2,8 @@
 /**
  * sampling distribution functions
  */
-#ifndef AT_SAMPLING_H
-#define AT_SAMPLING_H
+#ifndef AT_RANDOM_SAMPLING_H
+#define AT_RANDOM_SAMPLING_H
 
 #include <stddef.h>
 #include <stdint.h>
