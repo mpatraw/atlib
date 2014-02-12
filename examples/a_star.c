@@ -11,6 +11,13 @@
 
 
 
+static int is_obstructed(void *v)
+{
+        return ((int)(long)v) != 0;
+}
+
+
+
 int main(int argc, char *argv[])
 {
         unsigned x, y;
@@ -27,6 +34,7 @@ int main(int argc, char *argv[])
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
         };
+        int err;
         int xs[12];
         int ys[12];
         size_t sz = 12, i;
@@ -37,8 +45,13 @@ int main(int argc, char *argv[])
                 for (x = 0; x < W; ++x)
                         display[y * W + x] = grid[y * W + x] ? '#' : '.';
 
-        at_path_a_star(xs, ys, &sz, grid, W, H, 0, 0, 6, 6);
-        printf("%d\n", sz);
+        err = at_path_a_star(xs, ys, &sz, 0, 0, 6, 6, W, H, is_obstructed, (void **)(long *)grid);
+
+        if (err != 0)
+        {
+                printf("at_path_a_star(): failed to path\n");
+                return -1;
+        }
 
 
         for (i = 0; i < sz; ++i)
