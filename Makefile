@@ -2,7 +2,7 @@
 CC = gcc
 CFLAGS = -std=c89 -Wall -pedantic -I./lua -I./extern
 LDFLAGS = -g -lm
-SOURCES = atlua.c $(wildcard at/*.c) $(wildcard at/*/*.c)
+SOURCES = $(wildcard at/*.c) $(wildcard at/*/*.c)
 OBJECTS = $(SOURCES:.c=.o)
 TARGET = libat.so
 LTARGET = at.dll
@@ -17,7 +17,7 @@ $(TARGET): $(OBJECTS)
 	$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 $(LTARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -L./lua -llua51 -o $@
+	$(CC) $(OBJECTS) atlua.c -shared -fPIC $(LDFLAGS) -L./lua -llua51 -o $@
 
 .c.o:
 	$(CC) -c $(CFLAGS) $(LDFLAGS) $< -o $@
