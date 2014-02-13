@@ -36,7 +36,7 @@ $(TARGET): $(OBJECTS)
 	$(CC) -c $(CFLAGS) $(LDFLAGS) $< -o $@
 
 %.exe: %.c
-	$(CC) $(CFLAGS) -I. $< $(LDFLAGS) -L. -lat -o $@
+	$(CC) $(CFLAGS) -I. $< $(LDFLAGS) -L. -lat -lm -o $@
 
 clean:
 	-@rm $(TARGET) $(OBJECTS) $(EXAMPLE_EXES)
