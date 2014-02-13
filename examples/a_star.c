@@ -11,9 +11,10 @@
 
 
 
-static int is_obstructed(void *v)
+static int is_obstructed(void *v, int x, int y)
 {
-        return ((int)(long)v) != 0;
+        int *grid = (int *)(long *)v;
+        return grid[y * W + x] != 0;
 }
 
 
@@ -45,7 +46,7 @@ int main(int argc, char *argv[])
                 for (x = 0; x < W; ++x)
                         display[y * W + x] = grid[y * W + x] ? '#' : '.';
 
-        err = at_path_a_star(xs, ys, &sz, 0, 0, 6, 6, W, H, is_obstructed, (void **)(long *)grid);
+        err = at_path_a_star(xs, ys, &sz, 0, 0, 6, 6, W, H, is_obstructed, (void *)(long)grid);
 
         if (err != 0)
         {

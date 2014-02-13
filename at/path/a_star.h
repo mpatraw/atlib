@@ -19,7 +19,7 @@ extern "C" {
  * returns 0 on success, -1 on no memory, and -2 on no path found.
  */
 int at_path_a_star(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1,
-        size_t w, size_t h, int (*is_obstructed) (void *), void **map);
+        size_t w, size_t h, int (*is_obstructed) (void *, int, int), void *map);
 
 #ifdef __cplusplus
 }
