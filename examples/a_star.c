@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 
         if (err != 0)
         {
-                printf("at_path_a_star(): failed to path\n");
+                printf("at_path_a_star() failed, returning %d\n", err);
                 return -1;
         }
 
