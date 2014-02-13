@@ -27,17 +27,23 @@ all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES)
 .PHONY: clean
 
 $(LTARGET): $(OBJECTS)
-	$(CC) atlua.c $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
+	@echo CC -o $@
+	@$(CC) atlua.c $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
+	@echo CC -o $@
+	@$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 .c.o:
-	$(CC) -c $(CFLAGS) $(LDFLAGS) $< -o $@
+	@echo CC -o $@
+	@$(CC) -c $(CFLAGS) $(LDFLAGS) $< -o $@
 
 %.exe: %.c
-	$(CC) $(CFLAGS) -I. $< $(LDFLAGS) -L. -lat -lm -o $@
+	@echo CC $< -o $@
+	@$(CC) $(CFLAGS) -I. $< $(LDFLAGS) -L. -lat -lm -o $@
 
 clean:
-	-@rm $(TARGET) $(OBJECTS) $(EXAMPLE_EXES)
+	@echo cleaning...
+	-@rm $(TARGET) $(OBJECTS) $(EXAMPLE_EXES) 2> /dev/null
+	@echo done.
 
