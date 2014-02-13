@@ -19,6 +19,7 @@ endif
 ifeq ($(PLAT),linux)
 	LDFLAGS := -Wl,-R,'$$ORIGIN'
 	TARGET = libat.so
+	CFLAGS := -fPIC
 endif
 
 all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES)
