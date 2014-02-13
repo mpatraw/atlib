@@ -14,10 +14,10 @@ all: $(SOURCES) $(TARGET) $(LTARGET) $(EXAMPLE_EXES)
 .PHONY: clean
 
 $(TARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -shared $(LDFLAGS) -o $@
+	$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 $(LTARGET): $(OBJECTS)
-	$(CC) $(OBJECTS) -shared $(LDFLAGS) -o $@
+	$(CC) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 .c.o:
 	$(CC) -c $(CFLAGS) $(LDFLAGS) $< -o $@
