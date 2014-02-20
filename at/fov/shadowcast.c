@@ -16,12 +16,13 @@
 struct shadowfov
 {
         int *view;
-        int *grid;
-        size_t width;
-        size_t height;
         double radius;
         int x0;
         int y0;
+        size_t width;
+        size_t height;
+        int (*is_opaque) (void *, int, int);
+        void *grid;
 };
 
 
@@ -32,7 +33,7 @@ void cast_light(struct shadowfov *fov,
         double newstart = 0.0;
         int curx, cury, dx, dy, dist;
         double left, right;
-        int blocked = 0, in_bounds, is_opaque, in_radius;
+        int blocked = 0, in_bounds, opaque, in_radius;
 
         if (start < end)
                 return;
@@ -49,7 +50,7 @@ void cast_light(struct shadowfov *fov,
 
                         in_bounds = IN_BOUNDS(fov, curx, cury);
                         in_radius = CHECK_DIST(dx, dy, fov->radius);
-                        is_opaque = IS_OPAQUE(fov, curx, cury);
+                        opaque = fov->is_opaque(fov->grid, curx, cury);
 
                         if (!in_bounds || start < right)
                                 continue;
@@ -61,7 +62,7 @@ void cast_light(struct shadowfov *fov,
 
                         if (blocked)
                         {
-                                if (is_opaque)
+                                if (opaque)
                                 {
                                         newstart = right;
                                         continue;
@@ -74,7 +75,7 @@ void cast_light(struct shadowfov *fov,
                         }
                         else
                         {
-                                if (is_opaque && in_radius)
+                                if (opaque && in_radius)
                                 {
                                         blocked = 1;
                                         cast_light(fov, dist + 1, start, left,
@@ -88,8 +89,8 @@ void cast_light(struct shadowfov *fov,
 
 
 
-void at_do_shadowcast_fov(int *view, int *grid, size_t w, size_t h, double r,
-        int cx, int cy)
+void at_do_shadowcast_fov(int *view, double r, int cx, int cy,
+        size_t w, size_t h, int (*is_opaque) (void *, int, int), void *grid)
 {
         static const int d[4][2] = {
                 {-1, -1},
@@ -102,12 +103,13 @@ void at_do_shadowcast_fov(int *view, int *grid, size_t w, size_t h, double r,
         size_t i;
 
         fov.view = view;
-        fov.grid = grid;
-        fov.width = w;
-        fov.height = h;
         fov.radius = r;
         fov.x0 = cx;
         fov.y0 = cy;
+        fov.width = w;
+        fov.height = h;
+        fov.is_opaque = is_opaque;
+        fov.grid = grid;
 
         for (i = 0; i < 4; ++i)
         {

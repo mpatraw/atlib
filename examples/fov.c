@@ -11,6 +11,14 @@
 
 
 
+int is_opaque(void *v, int x, int y)
+{
+        int *grid = (int *)v;
+        return grid[y * W + x] != 0;
+}
+
+
+
 int main(int argc, char *argv[])
 {
         unsigned x, y;
@@ -30,7 +38,7 @@ int main(int argc, char *argv[])
 
         memset(view, 0, sizeof(*view) * W * H);
 
-        at_do_shadowcast_fov(view, grid, W, H, 10.0, 10, 5);
+        at_do_shadowcast_fov(view, 10.0, 10, 5, W, H, is_opaque, grid);
 
         for (y = 0; y < H; ++y)
         {

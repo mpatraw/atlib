@@ -11,8 +11,8 @@
 extern "C" {
 #endif
 
-void at_do_shadowcast_fov(int *view, int *grid, size_t w, size_t h, double r,
-        int cx, int cy);
+void at_do_shadowcast_fov(int *view, double r, int cx, int cy,
+        size_t w, size_t h, int (*is_opaque) (void *, int, int), void *grid);
 
 #ifdef __cplusplus
 }
