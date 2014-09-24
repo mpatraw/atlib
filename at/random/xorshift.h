@@ -7,13 +7,12 @@
 #ifndef AT_RANDOM_XORSHIFT_H
 #define AT_RANDOM_XORSHIFT_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
 enum {AT_XORSHIFT_K = 4};
 
-struct at_xorshift
-{
-        uint32_t _state[AT_XORSHIFT_K];
+struct at_xorshift {
+	uint32_t _state[AT_XORSHIFT_K];
 };
 
 #ifdef __cplusplus

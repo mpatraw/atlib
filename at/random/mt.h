@@ -7,14 +7,13 @@
 #ifndef AT_RANDOM_MT_H
 #define AT_RANDOM_MT_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
 enum {AT_MT_K = 624};
 
-struct at_mt
-{
-        uint32_t _state[AT_MT_K];
-        uint32_t _idx;
+struct at_mt {
+	uint32_t _state[AT_MT_K];
+	uint32_t _idx;
 };
 
 #ifdef __cplusplus

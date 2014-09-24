@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 void at_do_raycast_fov(int *view, int *grid, size_t w, size_t h, double r,
-        int cx, int cy);
+                       int cx, int cy);
 
 #ifdef __cplusplus
 }

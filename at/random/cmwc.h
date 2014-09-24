@@ -7,15 +7,14 @@
 #ifndef AT_RANDOM_CMWC_H
 #define AT_RANDOM_CMWC_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
 enum {AT_CMWC_K = 4096};
 
-struct at_cmwc
-{
-        uint32_t _state[AT_CMWC_K];
-        uint32_t _carry;
-        uint32_t _idx;
+struct at_cmwc {
+	uint32_t _state[AT_CMWC_K];
+	uint32_t _carry;
+	uint32_t _idx;
 };
 
 #ifdef __cplusplus

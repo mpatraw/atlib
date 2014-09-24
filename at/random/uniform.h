@@ -5,7 +5,7 @@
 #ifndef AT_RANDOM_UNIFORM_H
 #define AT_RANDOM_UNIFORM_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
 #ifdef __cplusplus
 extern "C" {

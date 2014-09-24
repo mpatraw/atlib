@@ -6,7 +6,7 @@
 #define AT_RANDOM_SAMPLING_H
 
 #include <stddef.h>
-#include <stdint.h>
+#include "pstdint.h"
 
 #ifdef __cplusplus
 extern "C" {

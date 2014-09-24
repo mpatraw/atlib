@@ -17,14 +17,14 @@ ifeq ($(PLAT),mingw)
 	TARGET = at.dll
 endif
 ifeq ($(PLAT),linux)
-	LDFLAGS := -Wl,-R,'$$ORIGIN'
+	LDFLAGS += -Wl,-R,'$$ORIGIN'
 	TARGET = libat.so
-	CFLAGS := -fPIC
+	CFLAGS += -fPIC
 endif
 
 all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES)
 
-.PHONY: clean
+.PHONY: clean format
 
 $(LTARGET): $(OBJECTS)
 	@echo CC -o $@
@@ -47,3 +47,5 @@ clean:
 	-@rm $(TARGET) $(OBJECTS) $(EXAMPLE_EXES) 2> /dev/null
 	@echo done.
 
+format:
+	astyle --options=astylerc -n examples/*.c at/*.h at/*/*.c at/*/*.h

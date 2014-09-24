@@ -2,11 +2,10 @@
 #ifndef AT_NOISE_PERLIN_H
 #define AT_NOISE_PERLIN_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
-struct at_perlin
-{
-        unsigned char _state[256];
+struct at_perlin {
+	unsigned char _state[256];
 };
 
 #ifdef __cplusplus

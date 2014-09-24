@@ -7,13 +7,12 @@
 #ifndef AT_RANDOM_BJENKINS_H
 #define AT_RANDOM_BJENKINS_H
 
-#include <stdint.h>
+#include "pstdint.h"
 
 enum {AT_BJENKINS_K = 4};
 
-struct at_bjenkins
-{
-        uint32_t _state[AT_BJENKINS_K];
+struct at_bjenkins {
+	uint32_t _state[AT_BJENKINS_K];
 };
 
 #ifdef __cplusplus
