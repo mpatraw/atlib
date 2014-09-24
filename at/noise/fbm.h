@@ -8,7 +8,7 @@
 #include "pstdint.h"
 
 struct at_fbm {
-	unsigned octants;
+	int octants;
 	double lacunarity;
 	double gain;
 	double amplitude;

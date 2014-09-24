@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
 	int i, counter[15] = {0};
 	struct at_xorshift x;
 	at_xorshift_seed(&x, time(NULL));
+	(void)argc;
+	(void)argv;
 
 	for (i = 0; i < 100000; ++i) {
 		++counter[(int)at_get_next_piecewise_linear(w, v, t, 4, next, &x)];

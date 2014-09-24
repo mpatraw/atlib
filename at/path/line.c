@@ -9,14 +9,15 @@
 
 
 
-void at_path_line(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1)
+void at_path_line(int *xs, int *ys, size_t *sz, int x0, int y0, int x1,
+                  int y1)
 {
 	int dx = abs(x1 - x0);
 	int sx = x0 < x1 ? 1 : -1;
 	int dy = abs(y1 - y0);
 	int sy = y0 < y1 ? 1 : -1;
 	int err = (dx > dy ? dx : -dy) / 2, e2;
-	int i = 0;
+	size_t i = 0;
 
 	/* compute length of the line without pathing */
 	if (!xs || !ys) {

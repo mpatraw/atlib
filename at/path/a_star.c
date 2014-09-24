@@ -18,15 +18,15 @@ typedef int comp_func(void *, void *);
 
 struct pqueue {
 	void **mem;
-	unsigned length, allocd;
+	size_t length, allocd;
 };
 
 
 
-static int pqueue_init(struct pqueue *pq, unsigned size)
+static int pqueue_init(struct pqueue *pq, size_t size)
 {
 	/* Size + 1, since we don't count element 0. */
-	pq->mem = malloc(sizeof *pq->mem * (size + 1));
+	pq->mem = malloc(sizeof(*pq->mem) * (size + 1));
 	if (!pq->mem) {
 		return -1;
 	}
@@ -39,11 +39,12 @@ static int pqueue_init(struct pqueue *pq, unsigned size)
 
 static void pqueue_uninit(struct pqueue *pq, free_func *freer)
 {
-	unsigned i;
-	if (freer)
+	size_t i;
+	if (freer) {
 		for (i = 1; i < pq->length + 1; ++i) {
 			freer(pq->mem[i]);
 		}
+	}
 	free(pq->mem);
 }
 
@@ -55,7 +56,7 @@ static int pqueue_push_min(struct pqueue *pq, void *mem, comp_func *comp)
 	void **new_mem;
 
 	if (pq->length + 1 >= pq->allocd) {
-		new_mem = realloc(pq->mem, sizeof *pq->mem * pq->allocd * 2);
+		new_mem = realloc(pq->mem, sizeof(*pq->mem) * pq->allocd * 2);
 		if (!new_mem) {
 			return -1;
 		}
@@ -73,9 +74,10 @@ static int pqueue_push_min(struct pqueue *pq, void *mem, comp_func *comp)
 
 
 
-static void pqueue_pop_min(struct pqueue *pq, free_func *freer, comp_func *comp)
+static void pqueue_pop_min(struct pqueue *pq, free_func *freer,
+                           comp_func *comp)
 {
-	unsigned i, child;
+	size_t i, child;
 	void *tofree = pq->mem[1];
 	void *last = pq->mem[pq->length--];
 	if (freer) {
@@ -107,7 +109,7 @@ static void pqueue_pop_min(struct pqueue *pq, free_func *freer, comp_func *comp)
 
         if (pq->length + 1 >= pq->allocd)
         {
-                new_mem = realloc(pq->mem, sizeof *pq->mem * pq->allocd * 2);
+                new_mem = realloc(pq->mem, sizeof(*pq->mem) * pq->allocd * 2);
                 if (!new_mem)
                         return -1;
                 pq->mem = new_mem;
@@ -125,7 +127,7 @@ static void pqueue_pop_min(struct pqueue *pq, free_func *freer, comp_func *comp)
 
 static void pqueue_pop_max(struct pqueue *pq, free_func *freer, comp_func *comp)
 {
-        unsigned i, child;
+        size_t i, child;
         void *tofree = pq->mem[1];
         void *last = pq->mem[pq->length--];
         if (freer)
@@ -165,11 +167,12 @@ struct a_star_node {
 
 static int pqueue_has(struct pqueue *pq, void *mem)
 {
-	unsigned i;
-	for (i = 1; i < pq->length + 1; ++i)
+	size_t i;
+	for (i = 1; i < pq->length + 1; ++i) {
 		if (pq->mem[i] == mem) {
 			return 1;
 		}
+	}
 	return 0;
 }
 
@@ -195,7 +198,8 @@ static int a_star_node_cmp(void *a, void *b)
 
 
 
-int at_path_a_star(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1,
+int at_path_a_star(int *xs, int *ys, size_t *sz, int x0, int y0, int x1,
+                   int y1,
                    size_t w, size_t h, int (*is_obstructed) (void *, int, int), void *map)
 {
 	static int dirs[8][3] = {
@@ -203,18 +207,19 @@ int at_path_a_star(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1,
 		{-1, -1, 14}, {-1,  1, 14}, { 1, -1, 14}, { 1,  1, 14},
 	};
 
-	int ret, i, nx, ny;
+	size_t i;
+	int ret, nx, ny;
 	int in_bounds, obstructed;
 	struct a_star_node *nodes = NULL;
 	struct a_star_node *ntmp = NULL, *head = NULL, *reversed = NULL;
 	struct a_star_node *lowest = NULL, *neighbor = NULL;
 	struct pqueue open;
 
-	nodes = malloc(sizeof *nodes * w * h);
+	nodes = malloc(sizeof(*nodes) * w * h);
 	if (!nodes) {
 		goto nomem;
 	}
-	memset(nodes, 0, sizeof *nodes * w * h);
+	memset(nodes, 0, sizeof(*nodes) * w * h);
 
 	nodes[y0 * w + x0].x = x0;
 	nodes[y0 * w + x0].y = y0;
@@ -235,7 +240,8 @@ int at_path_a_star(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1,
 			nx = lowest->x + dirs[i][0];
 			ny = lowest->y + dirs[i][1];
 			neighbor = &nodes[ny * w + nx];
-			in_bounds = nx >= 0 && nx < w && ny >= 0 && ny < h;
+			in_bounds = nx >= 0 && (size_t)nx < w &&
+			            ny >= 0 && (size_t)ny < h;
 			if (in_bounds) {
 				obstructed = is_obstructed(map, nx, ny);
 			} else {

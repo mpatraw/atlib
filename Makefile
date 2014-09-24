@@ -6,7 +6,7 @@ LUAINC =
 LUALIB = -llua5.1
 
 CC = gcc
-CFLAGS = -std=c89 -Wall -pedantic -I./extern
+CFLAGS = -std=c89 -Wall -Wextra -Werror -pedantic -I./extern
 LDFLAGS = -g -lm
 SOURCES = $(wildcard at/*.c) $(wildcard at/*/*.c)
 OBJECTS = $(SOURCES:.c=.o)

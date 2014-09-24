@@ -45,6 +45,8 @@ static const char *test_all(void)
 int main(int argc, char *argv[])
 {
 	const char *result = test_all();
+	(void)argc;
+	(void)argv;
 	if (result) {
 		printf("%s\n", result);
 	} else {

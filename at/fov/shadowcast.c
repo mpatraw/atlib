@@ -5,7 +5,8 @@
 
 #define SQ(x) ((x) * (x))
 #define IN_BOUNDS(fov, x, y) \
-        ((x) >= 0 && (y) >= 0 && (x) < (fov)->width && (y) < (fov)->height)
+        ((x) >= 0 && (y) >= 0 && \
+         (size_t)(x) < (fov)->width && (size_t)(y) < (fov)->height)
 #define IS_OPAQUE(fov, x, y) \
         ((fov)->grid[(y) * (fov)->width + (x)])
 #define CHECK_DIST(dx, dy, r) \
@@ -26,8 +27,8 @@ struct shadowfov {
 
 
 
-void cast_light(struct shadowfov *fov,
-                int row, double start, double end, int xx, int xy, int yx, int yy)
+void cast_light(struct shadowfov *fov, int row, double start, double end,
+                int xx, int xy, int yx, int yy)
 {
 	double newstart = 0.0;
 	int curx, cury, dx, dy, dist;
@@ -82,8 +83,8 @@ void cast_light(struct shadowfov *fov,
 
 
 
-void at_do_shadowcast_fov(int *view, double r, int cx, int cy,
-                          size_t w, size_t h, int (*is_opaque) (void *, int, int), void *grid)
+void at_do_shadowcast_fov(int *view, double r, int cx, int cy, size_t w,
+                          size_t h, int (*is_opaque) (void *, int, int), void *grid)
 {
 	static const int d[4][2] = {
 		{-1, -1},
@@ -93,7 +94,7 @@ void at_do_shadowcast_fov(int *view, double r, int cx, int cy,
 	};
 
 	struct shadowfov fov;
-	size_t i;
+	int i;
 
 	fov.view = view;
 	fov.radius = r;

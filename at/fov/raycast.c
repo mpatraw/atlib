@@ -9,8 +9,8 @@
 
 
 
-static void ray(int *view, int *grid, size_t w, size_t h, double r,
-                int x0, int y0, int x1, int y1)
+static void ray(int *view, int *grid, size_t w, size_t h, double r, int x0,
+                int y0, int x1, int y1)
 {
 	int dx = abs(x1 - x0);
 	int sx = x0 < x1 ? 1 : -1;
@@ -21,7 +21,7 @@ static void ray(int *view, int *grid, size_t w, size_t h, double r,
 	int y = y0;
 
 	for (; ; ) {
-		if (x >= 0 && y >= 0 && x < w && y < h) {
+		if (x >= 0 && y >= 0 && (size_t)x < w && (size_t)y < h) {
 			view[y * w + x] = 1;
 			if (grid[y * w + x]) {
 				break;

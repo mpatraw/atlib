@@ -15,6 +15,8 @@ struct at_2d {
 static double at_2dto4d(void *v, double x, double y, double z, double w)
 {
 	struct at_2d *_ = (struct at_2d *)v;
+	(void)z;
+	(void)w;
 	return _->f(_->v, x, y);
 }
 
@@ -30,6 +32,7 @@ struct at_3d {
 static double at_3dto4d(void *v, double x, double y, double z, double w)
 {
 	struct at_3d *_ = (struct at_3d *)v;
+	(void)w;
 	return _->f(_->v, x, y, z);
 }
 
@@ -63,9 +66,9 @@ double at_fbm_get_4d(struct at_fbm *fbm,
                      double (*f)(void *, double, double, double, double), void *v,
                      double x, double y, double z, double w)
 {
-	unsigned i;
+	int i;
 
-	unsigned octs = fbm ? fbm->octants : 6;
+	int octs = fbm ? fbm->octants : 6;
 	double lucan = fbm ? fbm->lacunarity : 2.0;
 	double gain = fbm ? fbm->gain : 0.5;
 	double amp = fbm ? fbm->amplitude : 1.0;

@@ -21,7 +21,7 @@ static int is_obstructed(void *v, int x, int y)
 
 int main(int argc, char *argv[])
 {
-	unsigned x, y;
+	int x, y;
 	char display[W * H];
 	int grid[W * H] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -39,6 +39,8 @@ int main(int argc, char *argv[])
 	int xs[12];
 	int ys[12];
 	size_t sz = 12, i;
+	(void)argc;
+	(void)argv;
 
 	memset(display, 0, sizeof(*display) * W * H);
 

@@ -18,7 +18,8 @@ extern "C" {
  * "xs" and "ys" can be null, in which case "sz" will be set to the minimum
  * length of the arrays required.
  */
-void at_path_line(int *xs, int *ys, size_t *sz, int x0, int y0, int x1, int y1);
+void at_path_line(int *xs, int *ys, size_t *sz, int x0, int y0, int x1,
+                  int y1);
 
 #ifdef __cplusplus
 }

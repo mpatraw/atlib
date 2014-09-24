@@ -8,7 +8,7 @@
 #include "pstdint.h"
 
 struct at_turbulence {
-	unsigned octants;
+	int octants;
 	double lacunarity;
 	double gain;
 	double amplitude;

@@ -21,7 +21,7 @@ int is_opaque(void *v, int x, int y)
 
 int main(int argc, char *argv[])
 {
-	unsigned x, y;
+	int x, y;
 	int view[W * H];
 	int grid[W * H] = {
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -35,6 +35,8 @@ int main(int argc, char *argv[])
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
 		0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 	};
+	(void)argc;
+	(void)argv;
 
 	memset(view, 0, sizeof(*view) * W * H);
 

@@ -33,11 +33,17 @@
 
 - pathing and pathfinding functions
         + line
-        + a*
+        + a* (heap/stack)
         - dijkstra
 
 - container functions
+        - dynamic array
+        - queue (stack/list)
+        - rb tree (hash)
 
 - heightmap functions
 
 - dungeon building functions
+
+- graphics functions
+        - simple terminal emulator
