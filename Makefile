@@ -1,6 +1,7 @@
 
 PLATS = mingw linux
 PLAT = none
+SDL = true
 
 LUAINC =
 LUALIB = -llua5.1
@@ -20,6 +21,15 @@ ifeq ($(PLAT),linux)
 	LDFLAGS += -Wl,-R,'$$ORIGIN'
 	TARGET = libat.so
 	CFLAGS += -fPIC
+endif
+
+ifeq ($(SDL),true)
+	LDFLAGS += -lSDL
+endif
+ifeq ($(SDL),false)
+	SOURCES := $(filter-out at/display/simple.c,$(SOURCES))
+	OBJECTS := $(filter-out at/display/simple.o,$(OBJECTS))
+	EXAMPLE_SOURCES := $(filter-out examples/display.c,$(EXAMPLE_SOURCES))
 endif
 
 all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES)
