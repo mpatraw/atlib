@@ -14,6 +14,8 @@ OBJECTS = $(SOURCES:.c=.o)
 EXAMPLE_SOURCES = $(wildcard examples/*.c)
 EXAMPLE_EXES = $(patsubst %.c,%.exe,$(EXAMPLE_SOURCES))
 
+LTARGET = at.so
+
 ifeq ($(PLAT),mingw)
 	TARGET = at.dll
 endif
@@ -32,13 +34,13 @@ ifeq ($(SDL),false)
 	EXAMPLE_SOURCES := $(filter-out examples/display.c,$(EXAMPLE_SOURCES))
 endif
 
-all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES)
+all: $(SOURCES) $(TARGET) $(EXAMPLE_EXES) $(LTARGET)
 
 .PHONY: clean format
 
 $(LTARGET): $(OBJECTS)
 	@echo CC -o $@
-	@$(CC) atlua.c $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
+	@$(CC) atlua.c $(CFLAGS) $(OBJECTS) -shared -fPIC $(LDFLAGS) -o $@
 
 $(TARGET): $(OBJECTS)
 	@echo CC -o $@
